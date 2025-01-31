@@ -132,7 +132,7 @@ data[
 #! Step 9: Naive Bayes Classification
 data[
     numeric_columns + ['severe']
-].to_csv('./NV.csv', index=False)
+].sample(frac=0.5).to_csv('./NV.csv', index=False)
 # X = data[selected_features + ['timezone', 'state_abbreviation']]
 # y = data['severe']
 # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
