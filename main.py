@@ -80,7 +80,7 @@ for col in high_outlier_columns:
 # For Predictive Analysis:
 # A binary outcome is often used in predictive models (like Logistic Regression, Decision Trees, etc.) when you're interested in identifying or classifying events based on certain criteria (like injury or fatality occurrence). It transforms a complex multi-value problem (number of injuries/fatalities) into a simpler yes/no problem, making predictions easier.
 data['severe'] = (data['injuries'] > 0) | (data['fatalities'] > 0)
-data.to_csv('./tornados_clear.csv', index=False)
+data.sample(frac=0.1).to_csv('./tornados_clear.csv', index=False)
 # ! Step 3: Feature Selection (Correlation Analysis)
 correlation_matrix = data[numeric_columns].corr()
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
