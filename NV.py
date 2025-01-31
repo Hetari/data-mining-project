@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 
@@ -73,50 +74,35 @@ def predict(test_data, attribute_counts, target_column='injuries'):
 
 
 # Step 5: Evaluate the predictions
+
+
 def evaluate(test_data, predictions, target_column='injuries'):
-    """
-    Evaluate the accuracy of the predictions.
-    """
-    true_positives = 0
-    true_negatives = 0
-    false_positives = 0
-    false_negatives = 0
-    total = len(test_data)
-    # Iterate through the test data and predictions
-    for true_value, predicted_value in zip(test_data[target_column], predictions):
-        if true_value == predicted_value:
-            if true_value == 1:  # Assuming 1 indicates positive class
-                true_positives += 1
-            else:
-                true_negatives += 1
-        else:
-            if predicted_value == 1:
-                false_positives += 1
-            else:
-                false_negatives += 1
+    predictions = np.array(predictions)
+    test_data[target_column] = test_data[target_column].astype(int)
 
-    # Accuracy calculation
-    accuracy = (true_positives + true_negatives) / total
+    # Convert predictions to binary values
+    predictions = (predictions > 0).astype(int)
 
-    # Precision calculation
+    true_positives = ((test_data[target_column] > 0) & (predictions == 1)).sum()
+    true_negatives = ((test_data[target_column] == 0) & (predictions == 0)).sum()
+    false_positives = ((test_data[target_column] == 0) & (predictions == 1)).sum()
+    false_negatives = ((test_data[target_column] > 0) & (predictions == 0)).sum()
+
+    accuracy = (true_positives + true_negatives) / len(test_data)
+
+    # Calculate Precision, Recall, and F1-score safely
     precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
-
-    # Recall calculation
     recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
+    f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
 
-    # F1-score calculation
-    if (precision + recall) > 0:
-        f1 = 2 * (precision * recall) / (precision + recall)
-    else:
-        f1 = 0
-
-    return accuracy, precision, recall, f1
+    return accuracy, precision, recall, f1_score
 
 
 # Main workflow
 if __name__ == "__main__":
     # Load the dataset
     file_path = "NV.csv"
+    # fatalities
     target_column = "injuries"
     data_set = load_data(file_path)
 
