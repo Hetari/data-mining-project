@@ -1,3 +1,4 @@
+from scipy.stats import zscore
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.cluster import KMeans
@@ -10,46 +11,25 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-# 
+#
 file_path = './tornados.csv'
 data = pd.read_csv(file_path)
 
 #! Step 1: Handle Missing Values
 numeric_columns = [
-    'year',
-    'month',
-    'day',
-
-    'state_fips',
-    'magnitude',
-
-    'track_width_yards',
-    'states_affected',
-    'county_fips_1',
-    'county_fips_2',
-    'county_fips_3',
-    'county_fips_4',
-
-    'injuries',
-    'fatalities',
-    'property_loss',
-    'track_width_yards',
-
-    # float
-    'start_latitude',
-    'start_longitude',
-    'end_latitude',
-    'end_longitude',
-    'track_length_miles'
+    'year', 'month', 'day',
+    'state_fips', 'magnitude',
+    'track_width_yards', 'states_affected', 'county_fips_1',
+    'county_fips_2', 'county_fips_3', 'county_fips_4',
+    'injuries', 'fatalities', 'property_loss', 'track_width_yards',
+    'start_latitude', 'start_longitude', 'end_latitude', 'end_longitude', 'track_length_miles'
 ]
 categorical_columns = ['timezone', 'state_abbreviation']
 
 # Impute missing values in numeric columns with the median
 # * `SimpleImputer` is a scikit-learn class which is helpful in handling the missing data in the predictive model dataset
-# ? print(data.isnull().sum())
 num_imputer = SimpleImputer(strategy='median')
 data[numeric_columns] = num_imputer.fit_transform(data[numeric_columns])
-# ? print(data.isnull().sum())
 
 
 # Check and drop categorical columns with excessive missingness
@@ -65,43 +45,71 @@ categorical_columns = [col for col in categorical_columns if col not in categori
 cat_imputer = SimpleImputer(strategy='most_frequent')
 data[categorical_columns] = cat_imputer.fit_transform(data[categorical_columns])
 
-# # Step 2: Encode Categorical Variables
-# label_encoder = LabelEncoder()
-# for col in categorical_columns:
-#     data[col] = label_encoder.fit_transform(data[col])
+#! Step 2: Feature Scaling
+numeric_columns_to_scale = [
+    'magnitude', 'track_width_yards', 'injuries', 'fatalities',
+    'property_loss', 'start_latitude', 'start_longitude',
+    'end_latitude', 'end_longitude', 'track_length_miles'
+]
 
-# # Step 3: Feature Scaling
-# scaler = StandardScaler()
-# data[numeric_columns] = scaler.fit_transform(data[numeric_columns])
+# Apply Standard Scaling
+scaler = StandardScaler()
+data[numeric_columns_to_scale] = scaler.fit_transform(data[numeric_columns_to_scale])
 
-# # Step 4: Extract Date and Time Features
-# data['datetime_utc'] = pd.to_datetime(data['datetime_utc'], errors='coerce')
-# data['year'] = data['datetime_utc'].dt.year
-# data['month'] = data['datetime_utc'].dt.month
-# data['day'] = data['datetime_utc'].dt.day
-# data['hour'] = data['datetime_utc'].dt.hour
-# data = data.drop(columns=['datetime_utc'])
+# ! Step 3: Handle Outliers
+z_scores = data[numeric_columns].apply(zscore)
 
-# # Step 5: Handle Outliers
-# for col in numeric_columns:
-#     Q1 = data[col].quantile(0.25)
-#     Q3 = data[col].quantile(0.75)
-#     IQR = Q3 - Q1
-#     lower_bound = Q1 - 1.5 * IQR
-#     upper_bound = Q3 + 1.5 * IQR
-#     data = data[(data[col] >= lower_bound) & (data[col] <= upper_bound)]
+outlier_counts = (z_scores.abs() > 3).sum()
+high_outlier_columns = outlier_counts[outlier_counts > 500].index.tolist()
 
-# # Step 6: Define Binary Outcome for Analysis
-# data['severe'] = (data['injuries'] > 0) | (data['fatalities'] > 0)
 
-# # Step 7: Feature Selection (Correlation Analysis)
-# correlation_matrix = data[numeric_columns].corr()
-# sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-# plt.title('Feature Correlation Matrix')
-# plt.show()
+# Clip outliers to 1.5 * IQR range
+for col in high_outlier_columns:
+    Q1 = data[col].quantile(0.25)
+    Q3 = data[col].quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
 
-# # Drop features with low correlation to the target variable
-# selected_features = ['injuries', 'fatalities', 'track_length_miles', 'track_width_yards']
+    data[col] = data[col].clip(lower=lower_bound, upper=upper_bound)
+
+
+# ! Define Binary Outcome for Analysis
+# Why it's important:
+# For Classification Models:
+# If you are building a classification model to predict whether an event is severe or not based on the tornado data, creating a binary outcome like this (severe) is crucial. It allows you to classify each tornado event as either "severe" or "not severe" based on whether there were any injuries or fatalities.
+
+# For Predictive Analysis:
+# A binary outcome is often used in predictive models (like Logistic Regression, Decision Trees, etc.) when you're interested in identifying or classifying events based on certain criteria (like injury or fatality occurrence). It transforms a complex multi-value problem (number of injuries/fatalities) into a simpler yes/no problem, making predictions easier.
+data['severe'] = (data['injuries'] > 0) | (data['fatalities'] > 0)
+
+# ! Step 4: Feature Selection (Correlation Analysis)
+correlation_matrix = data[numeric_columns].corr()
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Feature Correlation Matrix')
+plt.show()
+
+# Drop features with low correlation to the target variable
+selected_features = [
+    'year',  # Keep for temporal trends
+    'magnitude',
+    'track_width_yards',
+    'track_length_miles',
+    'start_latitude',
+    'start_longitude',
+    'injuries',
+    'fatalities',
+    'property_loss',
+    'state_fips'  # Keep for regional analysis
+
+]
+
+selected_correlation_matrix = data[selected_features].corr()
+# Plot heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(selected_correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+plt.title('Correlation Matrix of Selected Features')
+plt.show()
 
 # # Step 8: Apriori Algorithm (Association Rule Mining)
 # basket_data = data[['state_abbreviation', 'timezone']]
