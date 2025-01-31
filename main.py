@@ -49,18 +49,12 @@ categorical_columns = [col for col in categorical_columns if col not in categori
 cat_imputer = SimpleImputer(strategy='most_frequent')
 data[categorical_columns] = cat_imputer.fit_transform(data[categorical_columns])
 
-#! Step 2: Feature Scaling
+# ! Step 2: Handle Outliers
 numeric_columns_to_scale = [
     'magnitude', 'track_width_yards', 'injuries', 'fatalities',
     'property_loss', 'start_latitude', 'start_longitude',
     'end_latitude', 'end_longitude', 'track_length_miles'
 ]
-
-# Apply Standard Scaling
-# scaler = RobustScaler()
-# data[numeric_columns_to_scale] = scaler.fit_transform(data[numeric_columns_to_scale])
-
-# ! Step 3: Handle Outliers
 z_scores = data[numeric_columns].apply(zscore)
 
 outlier_counts = (z_scores.abs() > 3).sum()
@@ -86,8 +80,8 @@ for col in high_outlier_columns:
 # For Predictive Analysis:
 # A binary outcome is often used in predictive models (like Logistic Regression, Decision Trees, etc.) when you're interested in identifying or classifying events based on certain criteria (like injury or fatality occurrence). It transforms a complex multi-value problem (number of injuries/fatalities) into a simpler yes/no problem, making predictions easier.
 data['severe'] = (data['injuries'] > 0) | (data['fatalities'] > 0)
-
-# ! Step 4: Feature Selection (Correlation Analysis)
+data.to_csv('./tornados_clear.csv', index=False)
+# ! Step 3: Feature Selection (Correlation Analysis)
 correlation_matrix = data[numeric_columns].corr()
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
 plt.title('Feature Correlation Matrix')
@@ -129,7 +123,7 @@ selected_features = [
 # plt.title("Feature Importance (Random Forest)")
 # # plt.show()
 
-# ! Step 8: Apriori Algorithm (Association Rule Mining)
+# ! Step 5: Apriori Algorithm (Association Rule Mining)
 # save the feature_importance_df to a CSV file
 data[
     categorical_columns + ['severe']
