@@ -1,3 +1,5 @@
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from scipy.stats import zscore
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, LabelEncoder
@@ -14,7 +16,6 @@ import matplotlib.pyplot as plt
 #
 file_path = './tornados.csv'
 data = pd.read_csv(file_path)
-
 #! Step 1: Handle Missing Values
 numeric_columns = [
     'year', 'month', 'day',
@@ -87,12 +88,11 @@ data['severe'] = (data['injuries'] > 0) | (data['fatalities'] > 0)
 correlation_matrix = data[numeric_columns].corr()
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
 plt.title('Feature Correlation Matrix')
-plt.show()
+# plt.show()
 
 # Drop features with low correlation to the target variable
 selected_features = [
     'year',  # Keep for temporal trends
-    'magnitude',
     'track_width_yards',
     'track_length_miles',
     'start_latitude',
@@ -100,32 +100,41 @@ selected_features = [
     'injuries',
     'fatalities',
     'property_loss',
-    'state_fips'  # Keep for regional analysis
-
+    'state_fips',  # Keep for regional analysis
+    'severe'  # Keep for classification
 ]
 
-selected_correlation_matrix = data[selected_features].corr()
-# Plot heatmap
-plt.figure(figsize=(10, 6))
-sns.heatmap(selected_correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
-plt.title('Correlation Matrix of Selected Features')
-plt.show()
+# Data Splitting (Train-Test Split)
+X = data[selected_features].drop(columns=['severe'])  # Features
+y = data['severe']  # Target (Binary Outcome)
 
-# # Step 8: Apriori Algorithm (Association Rule Mining)
-# basket_data = data[['state_abbreviation', 'timezone']]
-# basket_data = pd.get_dummies(basket_data, columns=['state_abbreviation', 'timezone'])
+# Split into 80% training and 20% testing
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
-# apriori_results = apriori(basket_data, min_support=0.1, use_colnames=True)
-# association_rules_results = association_rules(apriori_results, metric='lift', min_threshold=1.0)
+# Train Logistic Regression
+log_reg = LogisticRegression(max_iter=1000)
+log_reg.fit(X_train, y_train)
+y_pred_log = log_reg.predict(X_test)
 
-# # Visualize association rules
-# print("Apriori Association Rules:\n", association_rules_results.head())
-# plt.figure(figsize=(10, 6))
-# sns.scatterplot(data=association_rules_results, x='support', y='confidence', size='lift', hue='lift', legend=False)
-# plt.title('Association Rules Visualization')
-# plt.xlabel('Support')
-# plt.ylabel('Confidence')
+# Train Random Forest Classifier
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+y_pred_rf = rf_model.predict(X_test)
+
+# Feature Importance (Random Forest)
+importance = rf_model.feature_importances_
+feature_importance_df = pd.DataFrame({'Feature': X_train.columns, 'Importance': importance})
+feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+plt.figure(figsize=(10, 5))
+sns.barplot(x=feature_importance_df['Importance'], y=feature_importance_df['Feature'])
+plt.title("Feature Importance (Random Forest)")
 # plt.show()
+
+# ! Step 8: Apriori Algorithm (Association Rule Mining)
+# save the feature_importance_df to a CSV file
+data[selected_features].to_csv('selected_features.csv', index=False)
+
 
 # # Step 9: Naive Bayes Classification
 # X = data[selected_features + ['timezone', 'state_abbreviation']]

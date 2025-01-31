@@ -1,0 +1,8 @@
+('year=2000') >>> 150
+('track_width_yards=500') >>> 120
+('year=2001') >>> 130
+('injuries=5') >>> 180
+('fatalities=1') >>> 160
+('property_loss=500000') >>> 140
+('state_fips=12') >>> 170
+('severe=1') >>> 200
