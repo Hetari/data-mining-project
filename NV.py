@@ -1,24 +1,31 @@
 import pandas as pd
 
+
 # Step 1: Load the dataset
-
-
 def load_data(file_path):
+    """
+    Load the dataset from a CSV file and transform it into a usable format.
+    """
     data_set = pd.read_csv(file_path)
     return data_set
 
 
 # Step 2: Split the dataset into training and test sets
-def split_data(data_set, train_size=300, shuffle=True):
-    if shuffle:
-        data_set = data_set.sample(frac=1).reset_index(drop=True)
-    train_data = data_set.iloc[:train_size]
-    test_data = data_set.iloc[train_size:]
+def split_data(data_set, train_size=0.7):
+    """
+    Split the dataset into a training set and a hold-out test set.
+    """
+    test_size = 1 - train_size
+    train_data = data_set.sample(frac=train_size, random_state=42)
+    test_data = data_set.drop(train_data.index)  # Test data (30%)
     return train_data, test_data
 
 
 # Step 3: Train the Naive Bayes model
 def train(train_data, target_column='injuries'):
+    """
+    Build a supervised Naive Bayes model from the training data.
+    """
     attribute_counts = {}  # Dictionary to store counts of attribute values per target class
     attributes = train_data.columns.drop(target_column)  # All columns except the target
 
@@ -70,27 +77,62 @@ def evaluate(test_data, predictions, target_column='injuries'):
     """
     Evaluate the accuracy of the predictions.
     """
-    correct = (test_data[target_column] == predictions).sum()  # Count correct predictions
-    accuracy = correct / len(test_data)  # Calculate accuracy
-    return accuracy
+    true_positives = 0
+    true_negatives = 0
+    false_positives = 0
+    false_negatives = 0
+    total = len(test_data)
+    # Iterate through the test data and predictions
+    for true_value, predicted_value in zip(test_data[target_column], predictions):
+        if true_value == predicted_value:
+            if true_value == 1:  # Assuming 1 indicates positive class
+                true_positives += 1
+            else:
+                true_negatives += 1
+        else:
+            if predicted_value == 1:
+                false_positives += 1
+            else:
+                false_negatives += 1
+
+    # Accuracy calculation
+    accuracy = (true_positives + true_negatives) / total
+
+    # Precision calculation
+    precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
+
+    # Recall calculation
+    recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
+
+    # F1-score calculation
+    if (precision + recall) > 0:
+        f1 = 2 * (precision * recall) / (precision + recall)
+    else:
+        f1 = 0
+
+    return accuracy, precision, recall, f1
 
 
 # Main workflow
 if __name__ == "__main__":
     # Load the dataset
     file_path = "NV.csv"
+    target_column = "injuries"
     data_set = load_data(file_path)
 
     # Split the dataset into training and test sets
-    train_data, test_data = split_data(data_set, train_size=300)
+    train_data, test_data = split_data(data_set, train_size=0.7)
 
     # Train the Naive Bayes model
-    attribute_counts = train(train_data, target_column='injuries')
+    attribute_counts = train(train_data, target_column=target_column)
 
     # Predict the target class for the test set
-    predictions = predict(test_data, attribute_counts, target_column='injuries')
+    predictions = predict(test_data, attribute_counts, target_column=target_column)
 
     # Evaluate the predictions
-    accuracy = evaluate(test_data, predictions, target_column='injuries')
+    accuracy, precision, recall, f1 = evaluate(test_data, predictions, target_column=target_column)
     print(f"Accuracy: {accuracy:.2f}")
+    print(f"Precision: {precision:.2f}")
+    print(f"Recall: {recall:.2f}")
+    print(f"F1-score: {f1:.2f}")
     print()

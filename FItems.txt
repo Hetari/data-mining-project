@@ -2320,3 +2320,25 @@ TX >>> 9265
 
 ('America/Chicago', 'False', 'TX') >>> 9054
 
+America/Chicago >>> 68664
+
+False >>> 127559
+
+True >>> 9827
+
+TX >>> 9265
+
+('America/Chicago', 'TX') >>> 9265
+
+('America/Chicago', 'True') >>> 9757
+
+('False', 'TX') >>> 9253
+
+('False', 'True') >>> 9687
+
+('America/Chicago', 'False') >>> 68594
+
+('America/Chicago', 'False', 'TX') >>> 9253
+
+('America/Chicago', 'False', 'True') >>> 9687
+

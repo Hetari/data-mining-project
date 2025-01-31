@@ -84,3 +84,7 @@
 ['False', 'KS'] (4427) -> ['America/Chicago'] (68664) [1.0]
 ['America/Chicago', 'TX'] (9265) -> ['False'] (66830) [0.9772261198057205]
 ['False', 'TX'] (9054) -> ['America/Chicago'] (68664) [1.0]
+['America/Chicago', 'TX'] (9265) -> ['False'] (127559) [0.9987048030221263]
+['False', 'TX'] (9253) -> ['America/Chicago'] (68664) [1.0]
+['America/Chicago', 'True'] (9757) -> ['False'] (127559) [0.9928256636261146]
+['False', 'True'] (9687) -> ['America/Chicago'] (68664) [1.0]

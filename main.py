@@ -2,7 +2,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from scipy.stats import zscore
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import StandardScaler, LabelEncoder, RobustScaler
+
 from sklearn.cluster import KMeans
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
@@ -56,8 +57,8 @@ numeric_columns_to_scale = [
 ]
 
 # Apply Standard Scaling
-scaler = StandardScaler()
-data[numeric_columns_to_scale] = scaler.fit_transform(data[numeric_columns_to_scale])
+# scaler = RobustScaler()
+# data[numeric_columns_to_scale] = scaler.fit_transform(data[numeric_columns_to_scale])
 
 # ! Step 3: Handle Outliers
 z_scores = data[numeric_columns].apply(zscore)
@@ -136,8 +137,8 @@ data[
 
 #! Step 9: Naive Bayes Classification
 data[
-    numeric_columns
-].sample(frac=0.005).to_csv('./NV.csv', index=False)
+    numeric_columns + ['severe']
+].to_csv('./NV.csv', index=False)
 # X = data[selected_features + ['timezone', 'state_abbreviation']]
 # y = data['severe']
 # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
