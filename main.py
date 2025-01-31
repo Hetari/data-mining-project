@@ -132,9 +132,12 @@ selected_features = [
 # save the feature_importance_df to a CSV file
 data[
     categorical_columns + ['severe']
-].to_csv('./selected_features.csv', index=False)
+].to_csv('./Apriori.csv', index=False)
 
-# # Step 9: Naive Bayes Classification
+#! Step 9: Naive Bayes Classification
+data[
+    numeric_columns
+].sample(frac=0.005).to_csv('./NV.csv', index=False)
 # X = data[selected_features + ['timezone', 'state_abbreviation']]
 # y = data['severe']
 # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)

@@ -4,7 +4,7 @@ Generates frequent item sets and association rules from given datasets using Apr
 import csv
 import itertools
 
-DataFile = open('./selected_features.csv', 'r')
+DataFile = open('./Apriori.csv', 'r')
 f2 = "Rules.txt"
 f1 = "FItems.txt"
 minsup = 0.5
