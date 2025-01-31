@@ -110,26 +110,47 @@ def rulegenerator(fitems):
 
         union_support = fitems[tuple(itemset)]
         for i in range(1, length):
-
+            conf = None
             lefts = map(list, itertools.combinations(itemset, i))
             for left in lefts:
                 if len(left) == 1:
-                    if ''.join(left) in fitems:
-                        leftcount = fitems[''.join(left)]
-                        conf = union_support / leftcount
+                    left_tuple = tuple(left)
+                    if left_tuple in fitems:
+                        leftcount = fitems[left_tuple]
+                        # Ensure union_support and leftcount are not None
+                        if union_support is not None and leftcount is not None:
+                            conf = union_support / leftcount
+                        else:
+                            conf = None
                 else:
-                    if tuple(left) in fitems:
-                        leftcount = fitems[tuple(left)]
-                        conf = union_support / leftcount
-                if conf >= minconf:
+                    left_tuple = tuple(left)
+                    if left_tuple in fitems:
+                        leftcount = fitems[left_tuple]
+                        # Ensure union_support and leftcount are not None
+                        if union_support is not None and leftcount is not None:
+                            conf = union_support / leftcount
+                        else:
+                            conf = None
+
+                # Check if conf is valid before comparison
+                if conf is not None and conf >= minconf:
                     fo = open(f2, "a+")
                     right = list(itemset[:])
                     for e in left:
                         right.remove(e)
-                    fo.write(str(left) + ' (' + str(leftcount) + ')' + ' -> ' + str(right) + ' (' +
-                             str(fitems[''.join(right)]) + ')' + ' [' + str(conf) + ']' + '\n')
-                    print(str(left) + ' -> ' + str(right) + ' (' + str(conf) + ')')
-                    counter = counter + 1
+
+                    # Handle right as both single-element and multi-element tuple
+                    right_tuple = tuple(right)
+                    if len(right) == 1:
+                        right_key = ''.join(right)  # Convert to string if it's a single item
+                    else:
+                        right_key = right_tuple  # Use tuple for multiple items
+
+                    if right_key in fitems:
+                        fo.write(str(left) + ' (' + str(leftcount) + ')' + ' -> ' + str(right) + ' (' +
+                                 str(fitems[right_key]) + ')' + ' [' + str(conf) + ']' + '\n')
+                        print(str(left) + ' -> ' + str(right) + ' (' + str(conf) + ')')
+                        counter = counter + 1
                     # Greater than 1???
                     fo.close()
     print(counter, "rules generated")
