@@ -132,7 +132,7 @@ selected_features = [
 # save the feature_importance_df to a CSV file
 data[
     categorical_columns + ['severe']
-].sample(frac=0.50).to_csv('./selected_features.csv', index=False)
+].to_csv('./selected_features.csv', index=False)
 
 # # Step 9: Naive Bayes Classification
 # X = data[selected_features + ['timezone', 'state_abbreviation']]

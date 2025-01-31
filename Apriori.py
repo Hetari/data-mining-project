@@ -5,10 +5,10 @@ import csv
 import itertools
 
 DataFile = open('./selected_features.csv', 'r')
-minsup = 0.03
 f2 = "Rules.txt"
 f1 = "FItems.txt"
-minconf = 0.39
+minsup = 0.5
+minconf = 0.7
 
 
 def L1():
