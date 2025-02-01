@@ -17,7 +17,7 @@ numeric_columns = [
     'start_latitude', 'start_longitude', 'end_latitude', 'end_longitude', 'track_length_miles'
 ]
 categorical_columns = [
-    'timezone', 'state_abbreviation', 'magnitude_estimated'
+    'state_abbreviation', 'magnitude_estimated'
 ]
 
 # Impute missing values in numeric columns with the median
@@ -93,7 +93,7 @@ final_categorical_selected_features = categorical_columns + [
 # Ensure only valid numeric columns are selected
 final_numeric_selected_features = [
     col for col in numeric_columns if col in selected_features
-] + ['severe']  # Add 'severe' for classification
+] + ['severe', 'state_fips']
 
 
 data[

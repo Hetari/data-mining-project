@@ -7,8 +7,8 @@ import itertools
 DataFile = open('./Apriori.csv', 'r')
 f2 = "Rules.txt"
 f1 = "FItems.txt"
-minsup = 0.5
-minconf = 0.7
+minsup = 0.05
+minconf = 0.9
 
 
 def L1():

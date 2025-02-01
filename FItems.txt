@@ -2342,3 +2342,865 @@ TX >>> 9265
 
 ('America/Chicago', 'False', 'True') >>> 9687
 
+America/Chicago >>> 68664
+
+False >>> 127559
+
+True >>> 9827
+
+TX >>> 9265
+
+('America/Chicago', 'True') >>> 9757
+
+('America/Chicago', 'TX') >>> 9265
+
+('America/Chicago', 'False') >>> 68594
+
+('False', 'TX') >>> 9253
+
+('False', 'True') >>> 9687
+
+('America/Chicago', 'False', 'True') >>> 9687
+
+('America/Chicago', 'False', 'TX') >>> 9253
+
+America/Chicago >>> 68664
+
+False >>> 127559
+
+True >>> 9827
+
+TX >>> 9265
+
+('America/Chicago', 'TX') >>> 9265
+
+('America/Chicago', 'False') >>> 68594
+
+('False', 'TX') >>> 9253
+
+('America/Chicago', 'True') >>> 9757
+
+('False', 'True') >>> 9687
+
+('America/Chicago', 'False', 'TX') >>> 9253
+
+('America/Chicago', 'False', 'True') >>> 9687
+
+America/Chicago >>> 68664
+
+False >>> 127559
+
+True >>> 9827
+
+TX >>> 9265
+
+('False', 'TX') >>> 9253
+
+('America/Chicago', 'True') >>> 9757
+
+('False', 'True') >>> 9687
+
+('America/Chicago', 'False') >>> 68594
+
+('America/Chicago', 'TX') >>> 9265
+
+('America/Chicago', 'False', 'TX') >>> 9253
+
+('America/Chicago', 'False', 'True') >>> 9687
+
+America/Chicago >>> 68664
+
+False >>> 127559
+
+True >>> 9827
+
+TX >>> 9265
+
+('False', 'TX') >>> 9253
+
+('False', 'True') >>> 9687
+
+('America/Chicago', 'TX') >>> 9265
+
+('America/Chicago', 'True') >>> 9757
+
+('America/Chicago', 'False') >>> 68594
+
+('America/Chicago', 'False', 'True') >>> 9687
+
+('America/Chicago', 'False', 'TX') >>> 9253
+
+America/Chicago >>> 68664
+
+OK >>> 4144
+
+False >>> 127559
+
+NC >>> 1450
+
+True >>> 9827
+
+KY >>> 1099
+
+MS >>> 2594
+
+PA >>> 909
+
+IL >>> 2716
+
+AR >>> 1952
+
+MO >>> 2441
+
+TX >>> 9265
+
+OH >>> 1223
+
+LA >>> 2271
+
+TN >>> 1335
+
+FL >>> 3566
+
+AL >>> 2456
+
+SC >>> 1141
+
+KS >>> 4429
+
+WY >>> 713
+
+NE >>> 2993
+
+GA >>> 1843
+
+IA >>> 2815
+
+SD >>> 1898
+
+ND >>> 1633
+
+MN >>> 2094
+
+WI >>> 1495
+
+NM >>> 636
+
+CT >>> 121
+
+IN >>> 1556
+
+CO >>> 2337
+
+MD >>> 395
+
+WV >>> 146
+
+VA >>> 803
+
+MA >>> 177
+
+OR >>> 125
+
+CA >>> 466
+
+NJ >>> 172
+
+MI >>> 1075
+
+AZ >>> 279
+
+NY >>> 483
+
+MT >>> 434
+
+UT >>> 135
+
+ME >>> 134
+
+ID >>> 219
+
+WA >>> 127
+
+America/Chicago >>> 68664
+
+OK >>> 4144
+
+False >>> 127559
+
+NC >>> 1450
+
+True >>> 9827
+
+KY >>> 1099
+
+MS >>> 2594
+
+IL >>> 2716
+
+AR >>> 1952
+
+MO >>> 2441
+
+TX >>> 9265
+
+OH >>> 1223
+
+LA >>> 2271
+
+TN >>> 1335
+
+FL >>> 3566
+
+AL >>> 2456
+
+SC >>> 1141
+
+KS >>> 4429
+
+NE >>> 2993
+
+GA >>> 1843
+
+IA >>> 2815
+
+SD >>> 1898
+
+ND >>> 1633
+
+MN >>> 2094
+
+WI >>> 1495
+
+IN >>> 1556
+
+CO >>> 2337
+
+MI >>> 1075
+
+('False', 'MS') >>> 2590
+
+('False', 'KY') >>> 1099
+
+('False', 'OK') >>> 4144
+
+('America/Chicago', 'MO') >>> 2441
+
+('False', 'SD') >>> 1896
+
+('FL', 'False') >>> 3561
+
+('America/Chicago', 'False') >>> 68594
+
+('False', 'GA') >>> 1843
+
+('False', 'OH') >>> 1222
+
+('False', 'IL') >>> 2715
+
+('America/Chicago', 'OH') >>> 1223
+
+('False', 'IN') >>> 1555
+
+('False', 'MN') >>> 2094
+
+('False', 'NE') >>> 2990
+
+('False', 'TX') >>> 9253
+
+('False', 'NC') >>> 1449
+
+('America/Chicago', 'TX') >>> 9265
+
+('America/Chicago', 'NC') >>> 1450
+
+('AL', 'False') >>> 2455
+
+('False', 'True') >>> 9687
+
+('CO', 'False') >>> 2336
+
+('TX', 'True') >>> 1029
+
+('America/Chicago', 'LA') >>> 2270
+
+('America/Chicago', 'True') >>> 9757
+
+('False', 'MO') >>> 2439
+
+('America/Chicago', 'WI') >>> 1495
+
+('America/Chicago', 'CO') >>> 2337
+
+('America/Chicago', 'SC') >>> 1141
+
+('False', 'ND') >>> 1633
+
+('False', 'KS') >>> 4426
+
+('America/Chicago', 'ND') >>> 1633
+
+('America/Chicago', 'KS') >>> 4429
+
+('America/Chicago', 'TN') >>> 1335
+
+('America/Chicago', 'MI') >>> 1075
+
+('False', 'LA') >>> 2271
+
+('False', 'WI') >>> 1491
+
+('AR', 'America/Chicago') >>> 1952
+
+('False', 'SC') >>> 1141
+
+('America/Chicago', 'MS') >>> 2594
+
+('America/Chicago', 'KY') >>> 1099
+
+('America/Chicago', 'OK') >>> 4144
+
+('False', 'TN') >>> 1335
+
+('America/Chicago', 'SD') >>> 1879
+
+('False', 'MI') >>> 1074
+
+('America/Chicago', 'GA') >>> 1843
+
+('America/Chicago', 'IL') >>> 2716
+
+('America/Chicago', 'IN') >>> 1556
+
+('False', 'IA') >>> 2809
+
+('America/Chicago', 'MN') >>> 2094
+
+('America/Chicago', 'NE') >>> 2993
+
+('AR', 'False') >>> 1950
+
+('America/Chicago', 'IA') >>> 2815
+
+('AL', 'America/Chicago') >>> 2456
+
+('America/Chicago', 'FL') >>> 3566
+
+('America/Chicago', 'False', 'MS') >>> 2590
+
+('America/Chicago', 'False', 'KY') >>> 1099
+
+('America/Chicago', 'False', 'OK') >>> 4144
+
+('America/Chicago', 'False', 'SD') >>> 1877
+
+('America/Chicago', 'False', 'GA') >>> 1843
+
+('America/Chicago', 'False', 'IL') >>> 2715
+
+('America/Chicago', 'False', 'IN') >>> 1555
+
+('America/Chicago', 'False', 'MN') >>> 2094
+
+('America/Chicago', 'False', 'NE') >>> 2990
+
+('America/Chicago', 'False', 'TX') >>> 9253
+
+('America/Chicago', 'False', 'IA') >>> 2809
+
+('America/Chicago', 'TX', 'True') >>> 1029
+
+('America/Chicago', 'False', 'MO') >>> 2439
+
+('America/Chicago', 'FL', 'False') >>> 3561
+
+('AL', 'America/Chicago', 'False') >>> 2455
+
+('America/Chicago', 'False', 'OH') >>> 1222
+
+('America/Chicago', 'False', 'ND') >>> 1633
+
+('America/Chicago', 'False', 'NC') >>> 1449
+
+('America/Chicago', 'CO', 'False') >>> 2336
+
+('America/Chicago', 'False', 'LA') >>> 2270
+
+('America/Chicago', 'False', 'True') >>> 9687
+
+('America/Chicago', 'False', 'WI') >>> 1491
+
+('America/Chicago', 'False', 'SC') >>> 1141
+
+('AR', 'America/Chicago', 'False') >>> 1950
+
+('False', 'TX', 'True') >>> 1017
+
+('America/Chicago', 'False', 'KS') >>> 4426
+
+('America/Chicago', 'False', 'TN') >>> 1335
+
+('America/Chicago', 'False', 'MI') >>> 1074
+
+('America/Chicago', 'False', 'TX', 'True') >>> 1017
+
+America/Chicago >>> 68664
+
+OK >>> 4144
+
+False >>> 127559
+
+NC >>> 1450
+
+True >>> 9827
+
+KY >>> 1099
+
+MS >>> 2594
+
+IL >>> 2716
+
+AR >>> 1952
+
+MO >>> 2441
+
+TX >>> 9265
+
+OH >>> 1223
+
+LA >>> 2271
+
+TN >>> 1335
+
+FL >>> 3566
+
+AL >>> 2456
+
+SC >>> 1141
+
+KS >>> 4429
+
+NE >>> 2993
+
+GA >>> 1843
+
+IA >>> 2815
+
+SD >>> 1898
+
+ND >>> 1633
+
+MN >>> 2094
+
+WI >>> 1495
+
+IN >>> 1556
+
+CO >>> 2337
+
+MI >>> 1075
+
+False >>> 127559
+
+True >>> 9827
+
+TX >>> 9265
+
+('False', 'True') >>> 9687
+
+('False', 'TX') >>> 9253
+
+OK >>> 4144
+
+False >>> 127559
+
+NC >>> 1450
+
+True >>> 9827
+
+KY >>> 1099
+
+MS >>> 2594
+
+IL >>> 2716
+
+AR >>> 1952
+
+MO >>> 2441
+
+TX >>> 9265
+
+OH >>> 1223
+
+LA >>> 2271
+
+TN >>> 1335
+
+FL >>> 3566
+
+AL >>> 2456
+
+SC >>> 1141
+
+KS >>> 4429
+
+NE >>> 2993
+
+GA >>> 1843
+
+IA >>> 2815
+
+SD >>> 1898
+
+ND >>> 1633
+
+MN >>> 2094
+
+WI >>> 1495
+
+IN >>> 1556
+
+CO >>> 2337
+
+MI >>> 1075
+
+('False', 'NC') >>> 1449
+
+('False', 'KY') >>> 1099
+
+('False', 'MS') >>> 2590
+
+('False', 'OK') >>> 4144
+
+('AL', 'False') >>> 2455
+
+('False', 'LA') >>> 2271
+
+('False', 'ND') >>> 1633
+
+('False', 'MO') >>> 2439
+
+('False', 'SD') >>> 1896
+
+('False', 'NE') >>> 2990
+
+('False', 'IL') >>> 2715
+
+('False', 'GA') >>> 1843
+
+('False', 'TX') >>> 9253
+
+('AR', 'False') >>> 1950
+
+('False', 'IN') >>> 1555
+
+('False', 'OH') >>> 1222
+
+('CO', 'False') >>> 2336
+
+('FL', 'False') >>> 3561
+
+('False', 'WI') >>> 1491
+
+('False', 'KS') >>> 4426
+
+('False', 'SC') >>> 1141
+
+('False', 'True') >>> 9687
+
+('False', 'MN') >>> 2094
+
+('TX', 'True') >>> 1029
+
+('False', 'TN') >>> 1335
+
+('False', 'IA') >>> 2809
+
+('False', 'MI') >>> 1074
+
+('False', 'TX', 'True') >>> 1017
+
+OK >>> 4144
+
+False >>> 127559
+
+NC >>> 1450
+
+True >>> 9827
+
+KY >>> 1099
+
+MS >>> 2594
+
+PA >>> 909
+
+IL >>> 2716
+
+AR >>> 1952
+
+MO >>> 2441
+
+TX >>> 9265
+
+OH >>> 1223
+
+LA >>> 2271
+
+TN >>> 1335
+
+FL >>> 3566
+
+AL >>> 2456
+
+SC >>> 1141
+
+KS >>> 4429
+
+WY >>> 713
+
+NE >>> 2993
+
+GA >>> 1843
+
+IA >>> 2815
+
+SD >>> 1898
+
+ND >>> 1633
+
+MN >>> 2094
+
+WI >>> 1495
+
+NM >>> 636
+
+IN >>> 1556
+
+CO >>> 2337
+
+VA >>> 803
+
+MI >>> 1075
+
+('False', 'VA') >>> 800
+
+('False', 'NC') >>> 1449
+
+('False', 'MI') >>> 1074
+
+('False', 'NM') >>> 635
+
+('False', 'OK') >>> 4144
+
+('FL', 'False') >>> 3561
+
+('False', 'GA') >>> 1843
+
+('False', 'IL') >>> 2715
+
+('False', 'TN') >>> 1335
+
+('MS', 'True') >>> 496
+
+('False', 'KY') >>> 1099
+
+('FL', 'True') >>> 552
+
+('False', 'PA') >>> 905
+
+('KS', 'True') >>> 519
+
+('False', 'IN') >>> 1555
+
+('False', 'True') >>> 9687
+
+('False', 'MN') >>> 2094
+
+('False', 'ND') >>> 1633
+
+('AL', 'False') >>> 2455
+
+('TX', 'True') >>> 1029
+
+('AR', 'False') >>> 1950
+
+('False', 'SC') >>> 1141
+
+('False', 'OH') >>> 1222
+
+('CO', 'False') >>> 2336
+
+('False', 'TX') >>> 9253
+
+('False', 'IA') >>> 2809
+
+('False', 'SD') >>> 1896
+
+('False', 'NE') >>> 2990
+
+('False', 'MO') >>> 2439
+
+('OK', 'True') >>> 535
+
+('False', 'MS') >>> 2590
+
+('False', 'LA') >>> 2271
+
+('False', 'WI') >>> 1491
+
+('False', 'KS') >>> 4426
+
+('False', 'WY') >>> 713
+
+('False', 'MS', 'True') >>> 492
+
+('False', 'KS', 'True') >>> 516
+
+('False', 'TX', 'True') >>> 1017
+
+('FL', 'False', 'True') >>> 547
+
+('False', 'OK', 'True') >>> 535
+
+OK >>> 4144
+
+False >>> 127559
+
+NC >>> 1450
+
+True >>> 9827
+
+KY >>> 1099
+
+MS >>> 2594
+
+PA >>> 909
+
+IL >>> 2716
+
+AR >>> 1952
+
+MO >>> 2441
+
+TX >>> 9265
+
+OH >>> 1223
+
+LA >>> 2271
+
+TN >>> 1335
+
+FL >>> 3566
+
+AL >>> 2456
+
+SC >>> 1141
+
+KS >>> 4429
+
+WY >>> 713
+
+NE >>> 2993
+
+GA >>> 1843
+
+IA >>> 2815
+
+SD >>> 1898
+
+ND >>> 1633
+
+MN >>> 2094
+
+WI >>> 1495
+
+NM >>> 636
+
+IN >>> 1556
+
+CO >>> 2337
+
+VA >>> 803
+
+MI >>> 1075
+
+('False', 'LA') >>> 2271
+
+('TX', 'True') >>> 1029
+
+('False', 'IN') >>> 1555
+
+('FL', 'True') >>> 552
+
+('False', 'SD') >>> 1896
+
+('False', 'PA') >>> 905
+
+('False', 'ND') >>> 1633
+
+('False', 'True') >>> 9687
+
+('False', 'OK') >>> 4144
+
+('False', 'KS') >>> 4426
+
+('MS', 'True') >>> 496
+
+('False', 'IL') >>> 2715
+
+('False', 'MO') >>> 2439
+
+('KS', 'True') >>> 519
+
+('OK', 'True') >>> 535
+
+('False', 'OH') >>> 1222
+
+('False', 'NC') >>> 1449
+
+('CO', 'False') >>> 2336
+
+('FL', 'False') >>> 3561
+
+('False', 'MS') >>> 2590
+
+('False', 'TN') >>> 1335
+
+('False', 'WI') >>> 1491
+
+('False', 'TX') >>> 9253
+
+('False', 'MN') >>> 2094
+
+('False', 'IA') >>> 2809
+
+('False', 'VA') >>> 800
+
+('AR', 'False') >>> 1950
+
+('False', 'MI') >>> 1074
+
+('AL', 'False') >>> 2455
+
+('False', 'WY') >>> 713
+
+('False', 'GA') >>> 1843
+
+('False', 'NM') >>> 635
+
+('False', 'KY') >>> 1099
+
+('False', 'SC') >>> 1141
+
+('False', 'NE') >>> 2990
+
+('False', 'OK', 'True') >>> 535
+
+('False', 'MS', 'True') >>> 492
+
+('False', 'KS', 'True') >>> 516
+
+('FL', 'False', 'True') >>> 547
+
+('False', 'TX', 'True') >>> 1017
+
