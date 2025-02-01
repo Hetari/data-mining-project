@@ -85,10 +85,10 @@ column_mapping = {
 }
 
 
-df = pd.read_csv('./tornados.csv')
+df = pd.read_csv('./tornados2.csv')
 
 # Renaming the columns
 df.rename(columns=column_mapping, inplace=True)
 
 # save the file in new one with different name
-df.to_csv('tornados_clear.csv', index=False)
+df.to_csv('tornados_.csv', index=False)

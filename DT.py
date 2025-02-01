@@ -19,10 +19,6 @@ y = data['severe']  # Target variable
 # Initialize and train a deep Decision Tree Classifier
 clf = DecisionTreeClassifier(
     criterion='entropy',
-    max_depth=15,            # Increase depth for more levels
-    min_samples_split=4,     # Minimum samples to split an internal node
-    min_samples_leaf=1,      # Minimum samples required at a leaf node
-    random_state=42
 )
 clf.fit(X, y)
 
